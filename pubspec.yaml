@@ -9,10 +9,12 @@ environment:
 
 dependencies:
   device_preview: ^1.2.0
+  dio: ^5.7.0
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.3
   go_router: ^14.6.3
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:

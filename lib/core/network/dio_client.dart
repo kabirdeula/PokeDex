@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pokedex/core/dependency_injection/dependency_injection.dart';
 import 'package:pokedex/core/services/services.dart';
 
 class DioClient {
@@ -30,3 +31,5 @@ class DioClient {
     }
   }
 }
+
+final dioClient = DioClient(dio: locator<Dio>());

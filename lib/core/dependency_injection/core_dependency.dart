@@ -3,7 +3,9 @@ import 'package:pokedex/core/constants/constants.dart';
 
 import 'dependency_injection.dart';
 
-void coreInjection() {
+/// Registers all core dependencies required throughout the app.
+/// Core dependencies typically include utilities like Dio or logging services.
+void setupCoreDependencies() {
   final dio = Dio(
     BaseOptions(
       baseUrl: ApiUrls.baseUrl,
@@ -14,5 +16,5 @@ void coreInjection() {
     ),
   );
 
-  locator.registerLazySingleton<Dio>(() => dio);
+  serviceLocator.registerLazySingleton<Dio>(() => dio);
 }

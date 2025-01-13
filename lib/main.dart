@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -16,7 +17,17 @@ void main() async {
 
   setupDependencyInjection();
 
-  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()));
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => serviceLocator<PokemonCubit>()..initialize()),
+      ],
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

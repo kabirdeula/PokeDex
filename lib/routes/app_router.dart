@@ -8,7 +8,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.initial.path,
         name: AppRoutes.initial.name,
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => HomeScreen(),
       ),
     ],
   );

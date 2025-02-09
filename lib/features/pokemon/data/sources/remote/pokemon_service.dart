@@ -23,13 +23,12 @@ class PokemonService {
   /// The function fetches Pokemon with IDs ranging from 1 to 21.
   Future<void> fetchAndStoreAllPokemon() async {
     try {
-      for (int id = 1; id <= 21; id++) {
-        final response = await _dio.get('${ApiUrls.fetchPokemon}$id');
+      final futures = List.generate(21, (id) async {
+        final response = await _dio.get('${ApiUrls.fetchPokemon}${id + 1}');
         final pokemon = Pokemon.fromJson(response.data);
-
-        // Store Pokemon data locally in Hive
         await _localService.savePokemon(pokemon);
-      }
+      });
+      await Future.wait(futures);
     } catch (e) {
       log.e("(Pokemon Service) Error fetching Pokemon: $e");
       rethrow;

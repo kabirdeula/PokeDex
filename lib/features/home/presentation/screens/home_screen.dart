@@ -10,7 +10,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Pokedex'),
       ),
-      body: PokemonListView(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: PokemonListView(),
+      ),
     );
   }
 }

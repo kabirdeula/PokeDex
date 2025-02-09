@@ -14,13 +14,16 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(PokemonAdapter());
+  Hive.registerAdapter(TypeSlotAdapter());
+  Hive.registerAdapter(PokemonTypeAdapter());
 
   setupDependencyInjection();
 
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => serviceLocator<PokemonCubit>()..initialize()),
+        BlocProvider(
+            create: (context) => serviceLocator<PokemonCubit>()..initialize()),
       ],
       child: DevicePreview(
         enabled: !kReleaseMode,
